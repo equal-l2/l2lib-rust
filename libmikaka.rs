@@ -1,5 +1,5 @@
 pub fn to_mikaka(alphabet:&str) -> &str {
-    match alphabet {
+    match alphabet.to_lowercase().as_str() {
         "1" => "ぬ",
         "2" => "ふ",
         "3" => "あ",
@@ -106,17 +106,18 @@ pub fn from_mikaka(hiragana:&str) -> &str {
 
 pub fn test(){
     let test_hiragana = "ぬふあうえおやゆよわほへーたていすかんなにらせちとしはきくまのりれけむつさそひこみもねるめろ　";
+    let test_alphabet = "123456789990-^\\qwertyuiopasdfghjkl;:]zxcvbnm,./_ ";
     println!("{}",test_hiragana);
+    println!("{}",test_alphabet);
+
     for c in test_hiragana.chars() {
         print!("{}",to_mikaka(from_mikaka(c.to_string().as_str())));
     }
-    print!("\n");
+    println!("");
 
-    let test_alphabet = "123456789990-^\\qwertyuiopasdfghjkl;:]zxcvbnm,./_ ";
-    println!("{}",test_alphabet);
     for c in test_alphabet.chars() {
         print!("{}",from_mikaka(to_mikaka(c.to_string().as_str())));
     }
-    print!("\n");
+    println!("");
 }
 
